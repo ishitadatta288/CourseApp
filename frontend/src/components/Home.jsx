@@ -12,20 +12,18 @@ import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/utils.js";
 function Home() {
   const [courses, setCourses] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // token
   useEffect(() => {
   const user = localStorage.getItem("user");
 
-  if (user && typeof user === "string" && user.length > 2) {
-    // Just a basic check: token should be a decently long string
-    setIsLoggedIn(true);
-  } else {
-    localStorage.removeItem("user"); // Clean up bad value
-    setIsLoggedIn(false);
-  }
-}, []);
+  if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   console.log("Login status = ", isLoggedIn);
 
@@ -113,7 +111,7 @@ function Home() {
             </h1>
           </div>
           <div className="space-x-4">
-            {isLoggedIn === null ? null : isLoggedIn ? (
+            {isLoggedIn ? (
               <button
                 onClick={handleLogout}
                 className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
