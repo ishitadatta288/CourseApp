@@ -16,18 +16,21 @@ function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-  const token = localStorage.getItem("token");
-  setIsLoggedIn(!!token);
-}, []);
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
-  
   const handleLogout = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {
         withCredentials: true,
       });
       toast.success(response.data.message);
-      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       setIsLoggedIn(false);
     } catch (error) {
       console.log("Error in logging out", error);
