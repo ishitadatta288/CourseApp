@@ -65,7 +65,7 @@ export const login = async (req, res) => {
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000), //1 day
             httpOnly: true, //can't be accessed via js directly
             secure: process.env.NODE_ENV === "production", // true for http only
-            sameSite: "Strict" // prevents CSRF attacks
+            sameSite: "None" // prevents CSRF attacks
         }
         res.cookie("jwt", token, cookieOptions);
         res.status(201).json({ message: "Login successful", user, token });
