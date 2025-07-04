@@ -3,7 +3,7 @@ import logo from "../../public/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-//import { BACKEND_URL } from "../utils/utils";
+import { BACKEND_URL } from "../utils/utils.js";
 
 function AdminSignup() {
   const [firstName, setFirstName] = useState("");
@@ -20,7 +20,7 @@ function AdminSignup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4001/api/v1/admin/signup",
+        `${BACKEND_URL}/admin/signup`,
         {
           firstName,
           lastName,
@@ -39,7 +39,7 @@ function AdminSignup() {
       navigate("/admin/login");
     } catch (error) {
       if (error.response) {
-        setErrorMessage(error.response.data.errors || "Signup failed!!!");
+        setErrorMessage(error.response?.data?.errors || "Signup failed!!!");
       }
     }
   };
