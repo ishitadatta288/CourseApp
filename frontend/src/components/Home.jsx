@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/utils.js";
+
 function Home() {
   const [courses, setCourses] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,28 +47,19 @@ function Home() {
   }, []);
 
   // logout
-  const handleLogout = async () => {
-  try {
-    const user = localStorage.getItem("user");
-    const token = user?.token;
-
-    const response = await axios.get(`${BACKEND_URL}/user/logout`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true, // Optional: only if your server sets cookies too
-    });
-
-    toast.success(response.data.message);
-    localStorage.removeItem("user");
-    setIsLoggedIn(false);
-  } catch (error) {
-    console.log("Error in logging out ", error);
-    toast.error(
-      error.response?.data?.error || "Error in logging out"
-    );
-  }
-};
+ const handleLogout = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/user/logout`, {
+        withCredentials: true,
+      });
+      toast.success(response?.data?.message);
+      localStorage.removeItem("user");
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.log("Error in logging out", error);
+      toast.error(error.response?.data?.errors || "Error in logging out");
+    }
+  };
 
 
   var settings = {
