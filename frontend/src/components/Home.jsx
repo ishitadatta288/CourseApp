@@ -16,13 +16,9 @@ function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);
+}, []);
 
   
   const handleLogout = async () => {
@@ -31,7 +27,7 @@ function Home() {
         withCredentials: true,
       });
       toast.success(response.data.message);
-      localStorage.removeItem("user");
+      localStorage.removeItem("token");
       setIsLoggedIn(false);
     } catch (error) {
       console.log("Error in logging out", error);
