@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/utils.js";
 function Home() {
   const [courses, setCourses] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   // token
   useEffect(() => {
@@ -175,7 +175,7 @@ function Home() {
                       </h2>
                       <Link
                         to={`/buy/${course._id}`}
-                        className="mt-8 bg-orange-500 text-white py-2 px-4 rounded-full hover:bg-blue-500 duration-300"
+                        className="inline-block mt-8 bg-orange-500 text-white py-2 px-4 rounded-full hover:bg-blue-500 duration-300"
                       >
                         Enroll Now
                       </Link>
@@ -195,7 +195,7 @@ function Home() {
               <div className="flex items-center space-x-2">
                 <img src={logo} alt="" className="w-10 h-10 rounded-full" />
                 <h1 className="text-2xl text-orange-500 font-bold">
-                  CourseHaven
+                  Edulocity
                 </h1>
               </div>
               <div className="mt-3 ml-2 md:ml-8">
@@ -218,19 +218,19 @@ function Home() {
               <h3 className="text-lg font-semibold md:mb-4">connects</h3>
               <ul className=" space-y-2 text-gray-400">
                 <li className="hover:text-white cursor-pointer duration-300">
-                  youtube- learn coding
+                  youtube
                 </li>
                 <li className="hover:text-white cursor-pointer duration-300">
-                  telegram- learn coding
+                  telegram
                 </li>
                 <li className="hover:text-white cursor-pointer duration-300">
-                  Github- learn coding
+                  Github
                 </li>
               </ul>
             </div>
             <div className="items-center mt-6 md:mt-0 flex flex-col">
               <h3 className="text-lg font-semibold mb-4">
-                copyrights &#169; 2024
+                copyrights &#169; 2025
               </h3>
               <ul className=" space-y-2 text-center text-gray-400">
                 <li className="hover:text-white cursor-pointer duration-300">
