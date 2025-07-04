@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../utils/utils.js";
 
 function OurCourses() {
   const [courses, setCourses] = useState([]);
@@ -20,7 +21,7 @@ function OurCourses() {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4001/api/v1/course/courses",
+          `${BACKEND_URL}/course/courses`,
           {
             withCredentials: true,
           }
@@ -39,7 +40,7 @@ function OurCourses() {
   const handleDeleteCourse = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4001/api/v1/course/delete/${id}`,
+        `${BACKEND_URL}/course/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,7 +53,7 @@ function OurCourses() {
       setCourses(updatedCourses);
     } catch (error) {
       console.log("Error in deleting course", error);
-      toast.error(error.response.data.errors || "Error in deleting course ");
+      toast.error(error.response?.data?.errors || "Error in deleting course ");
     }
   };
 
