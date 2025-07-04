@@ -16,7 +16,7 @@ function Home() {
 
   // token
   useEffect(() => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user");
 
   if (user) {
       setIsLoggedIn(true);
@@ -47,13 +47,8 @@ function Home() {
 
   // logout
   const handleLogout = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const token = user?.token;
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {
-        headers: {
-        Authorization: `Bearer ${token}`,
-      },
         withCredentials: true,
       });
       toast.success(response.data.message);
