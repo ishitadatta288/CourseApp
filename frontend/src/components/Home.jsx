@@ -23,10 +23,11 @@ function Home() {
     } else {
       setIsLoggedIn(false);
     }
+    console.log("user:" , user);
   }, []);
 
   console.log("Login status = ", isLoggedIn);
-  console.log("user:" , user);
+  
 
   // fetch courses
   useEffect(() => {
