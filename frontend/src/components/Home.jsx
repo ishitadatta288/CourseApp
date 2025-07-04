@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/utils.js";
 function Home() {
   const [courses, setCourses] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   // token
   useEffect(() => {
@@ -109,7 +109,7 @@ function Home() {
             </h1>
           </div>
           <div className="space-x-4">
-            {isLoggedIn ? (
+            {isLoggedIn === null ? null : isLoggedIn ? (
               <button
                 onClick={handleLogout}
                 className="bg-transparent text-white text-xs md:text-lg md:py-2 md:px-4 p-2 border border-white rounded"
