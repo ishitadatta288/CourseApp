@@ -26,7 +26,7 @@ function Home() {
   }, []);
 
   console.log("Login status = ", isLoggedIn);
-
+  console.log("user:" , user);
 
   // fetch courses
   useEffect(() => {
@@ -55,7 +55,7 @@ function Home() {
       setIsLoggedIn(false);
     } catch (error) {
       console.log("Error in logging out ", error);
-      toast.error(error.response.data.errors || "Error in logging out");
+      toast.error(error.response.data.error || "Error in logging out");
     }
   };
 
