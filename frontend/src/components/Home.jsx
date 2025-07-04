@@ -47,18 +47,28 @@ function Home() {
 
   // logout
   const handleLogout = async () => {
-    try {
-      const response = await axios.get(`${BACKEND_URL}/user/logout`, {
-        withCredentials: true,
-      });
-      toast.success(response.data.message);
-      localStorage.removeItem("user");
-      setIsLoggedIn(false);
-    } catch (error) {
-      console.log("Error in logging out ", error);
-      toast.error(error.response?.data?.error || "Error in logging out");
-    }
-  };
+  try {
+    const user = localStorage.getItem("user");
+    const token = user?.token;
+
+    const response = await axios.get(`${BACKEND_URL}/user/logout`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true, // Optional: only if your server sets cookies too
+    });
+
+    toast.success(response.data.message);
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+  } catch (error) {
+    console.log("Error in logging out ", error);
+    toast.error(
+      error.response?.data?.error || "Error in logging out"
+    );
+  }
+};
+
 
   var settings = {
     dots: true,
