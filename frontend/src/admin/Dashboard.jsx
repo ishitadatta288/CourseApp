@@ -3,12 +3,13 @@ import logo from "../../public/logo.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "../utils/utils.js";
 
 function Dashboard() {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4001/api/v1/admin/logout",
+        `${BACKEND_URL}/admin/logout`,
         {
           withCredentials: true,
         }
@@ -17,7 +18,7 @@ function Dashboard() {
       localStorage.removeItem("admin");
     } catch (error) {
       console.log("Error in logging out", error);
-      toast.error(error.response.data.error || "Error in logging out");
+      toast.error(error.response?.data?.error || "Error in logging out");
     }
   };
   return (
