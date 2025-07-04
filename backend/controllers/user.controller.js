@@ -84,7 +84,7 @@ export const logout = async (req, res) => {
             return res.status(401).json({ error: "Kindly login first" });
         }
 
-        res.clearCookie("jwt");
+        //res.clearCookie("jwt");
         res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
         console.log("Error in logout", error);
