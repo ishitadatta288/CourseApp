@@ -16,7 +16,7 @@ function Home() {
 
   // token
   useEffect(() => {
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (user) {
       setIsLoggedIn(true);
@@ -47,8 +47,13 @@ function Home() {
 
   // logout
   const handleLogout = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user?.token;
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {
+        headers: {
+        Authorization: `Bearer ${token}`,
+      },
         withCredentials: true,
       });
       toast.success(response.data.message);
@@ -56,7 +61,7 @@ function Home() {
       setIsLoggedIn(false);
     } catch (error) {
       console.log("Error in logging out ", error);
-      toast.error(error.response.data.error || "Error in logging out");
+      toast.error(error.response?.data?.error || "Error in logging out");
     }
   };
 
