@@ -16,13 +16,17 @@ function Home() {
 
   // token
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  const user = localStorage.getItem("user");
+
+  if (user && typeof user === "string" && user.length > 2) {
+    // Just a basic check: token should be a decently long string
+    setIsLoggedIn(true);
+  } else {
+    localStorage.removeItem("user"); // Clean up bad value
+    setIsLoggedIn(false);
+  }
+}, []);
+
   console.log("Login status = ", isLoggedIn);
 
 
