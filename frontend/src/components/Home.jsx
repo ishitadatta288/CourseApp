@@ -27,6 +27,9 @@ function Home() {
   const handleLogout = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {
+          headers: {
+             Authorization: `Bearer ${token}`,
+        },
         withCredentials: true,
       });
       toast.success(response.data.message);
