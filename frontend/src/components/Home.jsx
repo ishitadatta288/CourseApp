@@ -24,6 +24,7 @@ function Home() {
     }
   }, []);
 
+  const token = localStorage.getItem("token");
   const handleLogout = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/user/logout`, {
