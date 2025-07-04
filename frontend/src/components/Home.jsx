@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import { BACKEND_URL } from "../utils/utils.js";
 function Home() {
   const [courses, setCourses] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // token
   useEffect(() => {
@@ -23,6 +23,8 @@ function Home() {
       setIsLoggedIn(false);
     }
   }, []);
+  console.log("Login status = ", isLoggedIn);
+
 
   // fetch courses
   useEffect(() => {
